@@ -1,0 +1,122 @@
+/* .request-resource-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f2f2f2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #333;
+}
+
+
+.request-resource-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 15px; 
+}
+
+.textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 12px;
+  background-color: cadetblue;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+} */
+.request-resource-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.request-resource-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.request-resource-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.request-resource-container input,
+.request-resource-container select,
+.request-resource-container textarea,
+.request-resource-container button {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.request-resource-container textarea {
+  resize: none;
+  height: 80px;
+}
+
+.request-resource-container button {
+  background-color: cadetblue;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.request-resource-container button:hover {
+  background-color: hsl(182, 25%, 40%);
+}
+
+.request-resource-container .error-message {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+}
+
+.request-resource-container .success-message {
+  color: green;
+  font-size: 14px;
+  text-align: center;
+}

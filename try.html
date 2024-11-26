@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Resource Sharing Platform</title>
+    <link rel="stylesheet" href="try.css"> <!-- Link to your CSS -->
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/">Unity<span>Share</span></a>
+            </div>
+            <ul class="navbar">
+                <li><a href="/">Home</a></li>
+                <li><a href="/listResource">List Resource</a></li>
+                <li><a href="/requestResource">Request Resource</a></li>
+                <li><a href="/contactUs">Contact Us</a></li>
+            </ul>
+            <div class="navbar-right">
+                <div class="search-icon">
+                    <img src="search-icon.png" alt="Search">
+                </div>
+                <div class="notification-icon">
+                    <img src="notification-icon.png" alt="Notifications">
+                </div>
+                <div class="location-icon">
+                    <img src="location-icon.png" alt="Location">
+                </div>
+                <button class="signup-btn">Sign Up</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Share what you can, receive what you need</h1>
+            <p>Connecting communities for a better tomorrow.</p>
+            <div class="hero-buttons">
+                <a href="/listResource" class="btn">List a Resource</a>
+                <a href="/requestResource" class="btn">Request a Resource</a>
+             </div>
+        </div>
+    </section>
+
+    <!-- Quick Links Section -->
+    <section class="quick-links">
+        <div class="quick-link">
+            <img src="donate-icon.png" alt="Donate">
+            <h3>Donate Now</h3>
+            <p>Share your resources with those in need.</p>
+        </div>
+        <div class="quick-link">
+            <img src="request-icon.png" alt="Request">
+            <h3>Request Help</h3>
+            <p>Request for necessary resources.</p>
+        </div>
+        <div class="quick-link">
+            <img src="find-icon.png" alt="Find">
+            <h3>Find Nearby Resources</h3>
+            <p>Locate resources in your area easily.</p>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <h2>Resource Categories</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <h3>Food</h3>
+                <p>100 items available</p>
+                <a href="/category/food" class="btn">View Resources</a>
+            </div>
+            <div class="category-card">
+                <h3>Clothing</h3>
+                <p>50 items available</p>
+                <a href="/category/clothing" class="btn">View Resources</a>
+            </div>
+            <div class="category-card">
+                <h3>Books</h3>
+                <p>30 items available</p>
+                <a href="/category/books" class="btn">View Resources</a>
+            </div>
+            <div class="category-card">
+                <h3>Medical Supplies</h3>
+                <p>20 items available</p>
+                <a href="/category/medical" class="btn">View Resources</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <h2>Find Resources Near You</h2>
+        <div id="map"></div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>Success Stories</h2>
+        <div class="testimonial">
+            <p>"Thanks to UnityShare, I was able to get essential supplies during a tough time!"</p>
+            <span>- User A</span>
+        </div>
+        <div class="testimonial">
+            <p>"I found help in my neighborhood through this amazing platform."</p>
+            <span>- User B</span>
+        </div>
+    </section>
+
+    <!-- Recent Resources Section -->
+    <section class="recent-resources">
+        <h2>Recent Contributions</h2>
+        <div class="resource-carousel">
+            <div class="resource-card">
+                <h3>Winter Jackets</h3>
+                <p>Donated by: John Doe</p>
+            </div>
+            <div class="resource-card">
+                <h3>Stationery Kits</h3>
+                <p>Donated by: Sarah Lee</p>
+            </div>
+            <div class="resource-card">
+                <h3>Food Packets</h3>
+                <p>Donated by: Community Group</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <h3>1. Sign Up or Log In</h3>
+                <p>Register on the platform to begin.</p>
+            </div>
+            <div class="step">
+                <h3>2. List or Request Resources</h3>
+                <p>Post resources you want to share or request help.</p>
+            </div>
+            <div class="step">
+                <h3>3. Connect & Share</h3>
+                <p>Meet people in your community and support each other.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-links">
+            <a href="/about">About Us</a>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/contactUs">Contact</a>
+            <a href="/faqs">FAQs</a>
+        </div>
+        <div class="social-media">
+            <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+            <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+            <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+        </div>
+        <p>&copy; 2024 UnityShare. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js"></script> <!-- Link to your JS -->
+</body>
+</html>
