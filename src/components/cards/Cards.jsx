@@ -29,7 +29,9 @@ const Cards = () => {
   useEffect(() => {
     const fetchRequestedResources = async () => {
       try {
-        const response = await fetch("http://localhost:5000/requestedResources"); // Adjust URL if needed
+        const response = await fetch(
+          "http://localhost:5000/requestedResources"
+        ); // Adjust URL if needed
         const data = await response.json();
         setRequestedResources(data);
       } catch (error) {
@@ -43,18 +45,23 @@ const Cards = () => {
   // Request resource function
   const handleRequestResource = async (resourceId) => {
     try {
-      const token = localStorage.getItem("token"); // JWT token for authentication
-      const response = await fetch(`http://localhost:5000/request-resource/${resourceId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const token = localStorage.getItem("authToken"); // JWT token for authentication
+      const response = await fetch(
+        `http://localhost:5000/request-resource/${resourceId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.ok) {
         const updatedResources = donatedResources.map((resource) =>
-          resource._id === resourceId ? { ...resource, requested: true } : resource
+          resource._id === resourceId
+            ? { ...resource, requested: true }
+            : resource
         );
         setDonatedResources(updatedResources);
         setRequestMessage("Resource requested successfully.");
@@ -69,26 +76,33 @@ const Cards = () => {
 
   // Handle navigating to chat page
   const handleChat = (resourceId) => {
-    navigate(`/chat/${resourceId}`); // Navigate to chat page with the resource ID
+    navigate(`/chat`); // Navigate to chat page with the resource ID
   };
 
   // Filter resources based on category for donated resources
   const filteredDonatedResources =
     categoryFilter === "all"
       ? donatedResources
-      : donatedResources.filter((resource) => resource.category === categoryFilter);
+      : donatedResources.filter(
+          (resource) => resource.category === categoryFilter
+        );
 
   // Filter resources based on category for requested resources
   const filteredRequestedResources =
     categoryFilter === "all"
       ? requestedResources
-      : requestedResources.filter((resource) => resource.category === categoryFilter);
+      : requestedResources.filter(
+          (resource) => resource.category === categoryFilter
+        );
 
   return (
     <div className="cards-section">
       {/* Dropdown to choose between Donated and Requested Resources */}
       <div className="dropdown">
-        <select value={resourceType} onChange={(e) => setResourceType(e.target.value)}>
+        <select
+          value={resourceType}
+          onChange={(e) => setResourceType(e.target.value)}
+        >
           <option value="donated">Donated Resources</option>
           <option value="requested">Requested Resources</option>
         </select>
@@ -99,7 +113,10 @@ const Cards = () => {
         <>
           {/* Dropdown for filtering donated resources */}
           <div className="dropdown">
-            <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
+            <select
+              value={categoryFilter}
+              onChange={(e) => setCategoryFilter(e.target.value)}
+            >
               <option value="all">All Categories</option>
               <option value="food">Food</option>
               <option value="clothes">Clothes</option>
@@ -117,14 +134,26 @@ const Cards = () => {
                     className="card-image"
                   />
                   <h3>{resource.resourceName}</h3>
-                  <p className="resource-quantity">Quantity: {resource.quantity}</p>
-                  <p className="resource-description">Description : {resource.description}</p>
-                  <p className="resource-location">Location: {resource.location}</p>
-                  <p className="resource-by">Donated By : {resource.userId.name}</p>
+                  <p className="resource-quantity">
+                    Quantity: {resource.quantity}
+                  </p>
+                  <p className="resource-description">
+                    Description : {resource.description}
+                  </p>
+                  <p className="resource-location">
+                    Location: {resource.location}
+                  </p>
+                  <p className="resource-by">
+                    Donated By : {resource.userId.name}
+                  </p>
 
                   {resource.requested ? (
                     <>
-                      <button className="requested-button" disabled>
+                      <button
+                        className="requested-button"
+                        disabled
+                        style={{ marginRight: "10px" }}
+                      >
                         Requested
                       </button>
                       <button
@@ -148,7 +177,9 @@ const Cards = () => {
               <p>No donated resources available.</p>
             )}
           </div>
-          {requestMessage && <p className="request-message">{requestMessage}</p>}
+          {requestMessage && (
+            <p className="request-message">{requestMessage}</p>
+          )}
         </>
       )}
 
@@ -157,7 +188,10 @@ const Cards = () => {
         <>
           {/* Dropdown for filtering requested resources */}
           <div className="dropdown">
-            <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
+            <select
+              value={categoryFilter}
+              onChange={(e) => setCategoryFilter(e.target.value)}
+            >
               <option value="all">All Categories</option>
               <option value="food">Food</option>
               <option value="clothes">Clothes</option>
@@ -175,10 +209,18 @@ const Cards = () => {
                     className="card-image"
                   />
                   <h3>{resource.resourceName}</h3>
-                  <p className="resource-quantity">Quantity: {resource.quantity}</p>
-                  <p className="resource-description">Description : {resource.description}</p>
-                  <p className="resource-location">Location: {resource.location}</p>
-                  <p className="resource-by">Requested By : {resource.userId.name}</p>
+                  <p className="resource-quantity">
+                    Quantity: {resource.quantity}
+                  </p>
+                  <p className="resource-description">
+                    Description : {resource.description}
+                  </p>
+                  <p className="resource-location">
+                    Location: {resource.location}
+                  </p>
+                  <p className="resource-by">
+                    Requested By : {resource.userId.name}
+                  </p>
 
                   <button
                     onClick={() => handleChat(resource._id)}

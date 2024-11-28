@@ -1,11 +1,12 @@
-import React from 'react'
-import ContactUs from '/Unity Share 2/frontend/src/components/contactus/ContactUs.jsx'
+import React from "react";
+import ContactUs from "../components/contactus/ContactUs";
+
 const Contact = () => {
   return (
     <div>
-      <ContactUs/>
+      <ContactUs />
     </div>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;
