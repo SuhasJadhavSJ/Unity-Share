@@ -10,6 +10,8 @@ const Cards = () => {
   const [requestMessage, setRequestMessage] = useState("");
   const navigate = useNavigate();
 
+  const currentUserId = localStorage.getItem("user_id");
+
   // Fetch donated resources from server
   useEffect(() => {
     const fetchDonatedResources = async () => {
@@ -60,7 +62,13 @@ const Cards = () => {
       if (response.ok) {
         const updatedResources = donatedResources.map((resource) =>
           resource._id === resourceId
-            ? { ...resource, requested: true }
+            ? {
+                ...resource,
+                requestedBy: [
+                  ...resource.requestedBy,
+                  { userId: currentUserId },
+                ],
+              }
             : resource
         );
         setDonatedResources(updatedResources);
@@ -87,17 +95,8 @@ const Cards = () => {
           (resource) => resource.category === categoryFilter
         );
 
-  // Filter resources based on category for requested resources
-  const filteredRequestedResources =
-    categoryFilter === "all"
-      ? requestedResources
-      : requestedResources.filter(
-          (resource) => resource.category === categoryFilter
-        );
-
   return (
     <div className="cards-section">
-      {/* Dropdown to choose between Donated and Requested Resources */}
       <div className="dropdown">
         <select
           value={resourceType}
@@ -111,7 +110,6 @@ const Cards = () => {
       {/* Show Donated Resources */}
       {resourceType === "donated" && (
         <>
-          {/* Dropdown for filtering donated resources */}
           <div className="dropdown">
             <select
               value={categoryFilter}
@@ -126,53 +124,59 @@ const Cards = () => {
 
           <div className="card-container">
             {filteredDonatedResources.length > 0 ? (
-              filteredDonatedResources.map((resource) => (
-                <div key={resource._id} className="card">
-                  <img
-                    src={`http://localhost:5000${resource.image[0]}`} // Displaying the first image in the image array
-                    alt={resource.resourceName}
-                    className="card-image"
-                  />
-                  <h3>{resource.resourceName}</h3>
-                  <p className="resource-quantity">
-                    Quantity: {resource.quantity}
-                  </p>
-                  <p className="resource-description">
-                    Description : {resource.description}
-                  </p>
-                  <p className="resource-location">
-                    Location: {resource.location}
-                  </p>
-                  <p className="resource-by">
-                    Donated By : {resource.userId.name}
-                  </p>
+              filteredDonatedResources.map((resource) => {
+                const isRequestedByCurrentUser = resource.requestedBy.some(
+                  (request) => request.userId === currentUserId
+                );
 
-                  {resource.requested ? (
-                    <>
+                return (
+                  <div key={resource._id} className="card">
+                    <img
+                      src={`http://localhost:5000${resource.image[0]}`}
+                      alt={resource.resourceName}
+                      className="card-image"
+                    />
+                    <h3>{resource.resourceName}</h3>
+                    <p className="resource-quantity">
+                      Quantity: {resource.quantity}
+                    </p>
+                    <p className="resource-description">
+                      Description : {resource.description}
+                    </p>
+                    <p className="resource-location">
+                      Location: {resource.location}
+                    </p>
+                    <p className="resource-by">
+                      Donated By : {resource.userId.name}
+                    </p>
+
+                    {isRequestedByCurrentUser ? (
+                      <>
+                        <button
+                          className="requested-button"
+                          disabled
+                          style={{ marginRight: "10px" }}
+                        >
+                          Requested
+                        </button>
+                        <button
+                          className="chat-button"
+                          onClick={() => handleChat(resource._id)}
+                        >
+                          Chat
+                        </button>
+                      </>
+                    ) : (
                       <button
-                        className="requested-button"
-                        disabled
-                        style={{ marginRight: "10px" }}
+                        onClick={() => handleRequestResource(resource._id)}
+                        className="request-button"
                       >
-                        Requested
+                        Request
                       </button>
-                      <button
-                        className="chat-button"
-                        onClick={() => handleChat(resource._id)}
-                      >
-                        Chat
-                      </button>
-                    </>
-                  ) : (
-                    <button
-                      onClick={() => handleRequestResource(resource._id)}
-                      className="request-button"
-                    >
-                      Request
-                    </button>
-                  )}
-                </div>
-              ))
+                    )}
+                  </div>
+                );
+              })
             ) : (
               <p>No donated resources available.</p>
             )}
@@ -180,60 +184,6 @@ const Cards = () => {
           {requestMessage && (
             <p className="request-message">{requestMessage}</p>
           )}
-        </>
-      )}
-
-      {/* Show Requested Resources */}
-      {resourceType === "requested" && (
-        <>
-          {/* Dropdown for filtering requested resources */}
-          <div className="dropdown">
-            <select
-              value={categoryFilter}
-              onChange={(e) => setCategoryFilter(e.target.value)}
-            >
-              <option value="all">All Categories</option>
-              <option value="food">Food</option>
-              <option value="clothes">Clothes</option>
-              <option value="education">Education</option>
-            </select>
-          </div>
-
-          <div className="card-container">
-            {filteredRequestedResources.length > 0 ? (
-              filteredRequestedResources.map((resource) => (
-                <div key={resource._id} className="card">
-                  <img
-                    src={`http://localhost:5000${resource.image[0]}`} // Displaying the first image in the image array
-                    alt={resource.resourceName}
-                    className="card-image"
-                  />
-                  <h3>{resource.resourceName}</h3>
-                  <p className="resource-quantity">
-                    Quantity: {resource.quantity}
-                  </p>
-                  <p className="resource-description">
-                    Description : {resource.description}
-                  </p>
-                  <p className="resource-location">
-                    Location: {resource.location}
-                  </p>
-                  <p className="resource-by">
-                    Requested By : {resource.userId.name}
-                  </p>
-
-                  <button
-                    onClick={() => handleChat(resource._id)}
-                    className="chat-button"
-                  >
-                    Chat
-                  </button>
-                </div>
-              ))
-            ) : (
-              <p>No requested resources available.</p>
-            )}
-          </div>
         </>
       )}
     </div>
