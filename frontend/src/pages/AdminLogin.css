@@ -1,0 +1,33 @@
+/* Admin.css */
+.login-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    height: 300px;
+  }
+  
+  .login-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: cadetblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .admin-dashboard {
+    padding: 20px;
+  }
+  
+  .admin-dashboard h3 {
+    margin-top: 20px;
+  }
+  

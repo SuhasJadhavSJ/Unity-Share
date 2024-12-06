@@ -1,0 +1,7 @@
+.chat-container {
+  display: flex;
+  height: 100vh;
+}
+.chat-window {
+  background-color: #f0f0f0; /* Just for testing */
+}

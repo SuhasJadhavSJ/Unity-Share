@@ -1,0 +1,14 @@
+.login-container{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    background-color: aquamarine;
+}
+
+.login-inp{
+    width: 60%;
+}
+
+ input{
+    width: 60%;
+}
